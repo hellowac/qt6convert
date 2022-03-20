@@ -5,3 +5,4 @@ venv
 .qt_for_python
 main.exe
 .vscode
+*/__pycache__
