@@ -1,1 +1,7 @@
 venv
+*.build
+*.dist
+*.onefile-build
+.qt_for_python
+main.exe
+.vscode
