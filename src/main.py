@@ -1,6 +1,7 @@
 
 #导入程序运行必须模块
 import sys
+from typing import List
 #PySide6中使用的基本控件都在PySide6.QtWidgets模块中
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog
 from PySide6.QtGui import QTextDocumentWriter, QTextDocument
@@ -8,6 +9,7 @@ from PySide6.QtCore import Slot, QDir, QFileInfo, QCoreApplication
 
 #导入designer工具生成的convert模块
 from convert import Ui_ConvertTextTitle
+from process import newline_flag, replace_flag, split_flag
 
 # MIME_TYPES = ["text/html", "text/markdown", "text/plain"]
 MIME_TYPES = ["text/plain", ]
@@ -40,21 +42,30 @@ class MyMainForm(QMainWindow, Ui_ConvertTextTitle):
         将一段文本切分成多个句子
         :param sentence: ['虽然BillRoper正忙于全新游戏
         :return: ['虽然BillRoper正..接近。' , '与父母，之首。' , '很多..常见。' , '”一位上..推进。' , ''”一直坚..市场。'' , '如今，...的70%。']
+
+        # 近日，乘联会发布的2022年1月-2月份新能源汽车销售数据显示，前两个月国内狭义乘用车累计销量为332.4万辆，其中新能源乘用车零售销量达到61.9万辆，市场供应回暖，厂家也都在积极迎接农历新年后的“开门红”。
         """
 
         lines = sentence.strip().split()
 
-        delimiters = ['，', '.',  '。', '！', '？', '?', ',', ';']
-
         new_lines = []
 
         for line in lines:
+
             txt = line
-            for delimiter in delimiters:
-                txt = txt.replace(f'{delimiter}', f'{delimiter}\n\n')
-            new_lines.append(txt)
+
+            txt: str = replace_flag(txt) # 替换为空格
+            txt_arr: list = newline_flag(txt) # 保留并换行
+
+            for sub_txt in txt_arr:
+                if sub_txt:
+                    txt_arr2: list = split_flag(sub_txt) # 过长的行分割
+
+                    # 添加结果文本
+                    if txt_arr2:
+                        new_lines.extend(txt_arr2)
         
-        new_centence = '\n'.join(new_lines) 
+        new_centence = '\n\n'.join(new_lines) 
 
         return new_centence
 
@@ -88,7 +99,7 @@ class MyMainForm(QMainWindow, Ui_ConvertTextTitle):
 
     @Slot()
     def file_save_as(self):
-        file_dialog = QFileDialog(self, "Save as...")
+        file_dialog = QFileDialog(self, "保存为...")
         file_dialog.setAcceptMode(QFileDialog.AcceptSave)
 
         mime_types = MIME_TYPES

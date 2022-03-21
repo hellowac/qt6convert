@@ -1,0 +1,3 @@
+# 语法参考: https://iscompatible.readthedocs.io/en/latest/#:~:text=Python%20versioning%20with%20requirements.txt%20syntax%C2%B6%20iscompatible%20v0.1.1.%20gives,between%20a%20set%20of%20requirements%20and%20a%20version.
+PySide6>=6.2.3
+thulac>=0.2.1

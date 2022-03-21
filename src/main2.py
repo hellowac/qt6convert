@@ -19,14 +19,14 @@ raw_txt = """
 　　美国总统拜登上台后一改前任特朗普的作风，对沙政策改弦更张，美沙关系也日趋紧张。在俄乌冲突爆发前，拜登并不急于与沙特领导人对话——但现在，主动权似乎开始落在沙特手中。
     """
 
+def main0():
+    thu1 = thulac.thulac(seg_only=True)  #默认模式
+    text = thu1.cut(raw_txt, text=True)  #进行一句话分词
+    print(type(text))
+    print(text)
+
+
 def main():
-
-    
-    # thu1 = thulac.thulac(seg_only=True)  #默认模式
-    # text = thu1.cut(raw_txt, text=True)  #进行一句话分词
-    # print(type(text))
-    # print(text)
-
     def split_by(spare):
 
         def split_text(txt):
@@ -129,4 +129,6 @@ def cut2(sentence):
 if __name__ == "__main__":
 
     # main()
-    cut2(raw_txt)
+    # cut2(raw_txt)
+    main0()
+    # main2()
