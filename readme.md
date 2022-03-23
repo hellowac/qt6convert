@@ -33,6 +33,22 @@ nuitka.bat --onefile --plugin-enable=pyside6 .\src\main.py
 nuitka3 --onefile --plugin-enable=pyside6 --include-package-data=thulac ./src/main.py
 ```
 
+需要更新包 `import thulac.manage.Postprocesser` 中处理用户字典的逻辑
+
+```python
+from io import StringIO
+
+...
+# line: 15
+if isinstance(filename, StringIO):
+    f = filename
+else:
+    try:
+        f = open(filename, "r", encoding="utf-8")
+    except:
+        f = open(filename, "r")
+```
+
 结果为
 
 > **注意**

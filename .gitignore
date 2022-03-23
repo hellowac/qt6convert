@@ -4,6 +4,7 @@ venv
 *.onefile-build
 .qt_for_python
 main.exe
+main.bin
 .vscode/
 */__pycache__
 *.DS_Store
