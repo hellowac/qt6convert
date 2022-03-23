@@ -5,6 +5,7 @@ venv
 .qt_for_python
 main.exe
 main.bin
+main.app
 .vscode/
 */__pycache__
 *.DS_Store

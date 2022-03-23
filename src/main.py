@@ -121,8 +121,8 @@ class MyMainForm(QMainWindow, Ui_ConvertTextTitle):
                     continue
 
                 rand_key = self.get_rand_key()
-                self.book_title_map[rand_key] = book_title
-                centence = centence.replace(book_title, rand_key)
+                self.book_title_map[rand_key] = keyword
+                centence = centence.replace(keyword, rand_key)
 
         return centence
 
