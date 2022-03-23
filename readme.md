@@ -26,7 +26,7 @@ pyside6-uic .\src\convert.ui -o .\src\convert.py
 
 ```shell
 # win 平台
-nuitka.bat --onefile --plugin-enable=pyside6 .\src\main.py
+nuitka.bat --onefile --plugin-enable=pyside6 --include-package-data=thulac .\src\main.py
 # mac 平台
 
 # 用这行包含包的数据目录，否则打包不成功。
